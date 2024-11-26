@@ -1,0 +1,875 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+    overflow-x: hidden;
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(to bottom, #0d0d2b, #000931);
+    color: white;
+  }
+  
+  /* Custom scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #0C0C27;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #18095c;
+    border-radius: 6px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #400f9c00;
+  }
+  
+  .navbar {
+    position: fixed;
+    top: 40px; 
+    left: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    margin: 0 60px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 24px;
+    align-items: center;
+    transition: background 0.3s, color 0.1s, top 0.3s, left 0.3s, right 0.3s, padding 0.3s, margin 0.3s, box-shadow 0.3s;
+    z-index: 1000;
+}
+
+/* Navbar bağlantıları için temel stil */
+.navbar a {
+    color: #ffffff; /* Yazı rengi */
+    text-decoration: none; /* Alt çizgiyi kaldır */
+    transition: color 0.3s, transform 0.1s; /* Renk ve titreşim için geçişler */
+}
+
+/* Hover efekti: yazılar titrer ve rengi değişir */
+.navbar a:hover {
+    color: #ce8704; /* Yazı rengini değiştir */
+    animation: shake 0.3s ease-in-out; /* Titreşim animasyonu ekle */
+}
+
+/* Titreşim animasyonu tanımı */
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-2px); }
+    50% { transform: translateX(2px); }
+    75% { transform: translateX(-2px); }
+    100% { transform: translateX(0); }
+}
+
+  
+  .navbar.sticky {
+    background: #6b170c;
+    color: #ffffff;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0); /* White shadow */
+  }
+  
+  .navbar a {
+    color: inherit; /* Use inherit to ensure color change on scroll */
+    text-decoration: none;
+    font-weight: 300;
+    margin: 0 15px;
+    transition: color 0.3s;
+  }
+  
+/* Logo bağlantısı için stil */
+.logo-link {
+  display: flex; /* Logo ve yazıyı yan yana hizalamak için flex */
+  align-items: center; /* Dikey hizalama */
+  gap: 10px; /* Logo ve yazı arasındaki boşluk */
+  text-decoration: none; /* Alt çizgiyi kaldır */
+}
+
+/* Logo resminin stili */
+.logo-image {
+  width: 100px; /* Logo genişliği */
+  height: auto; /* Oranı koruyarak yüksekliği ayarla */
+  transition: transform 0.3s ease-in-out; /* Hover animasyonu için */
+}
+
+/* Logo bağlantısındaki yazının stili */
+.logo-link span {
+  font-family: 'Quicksand', sans-serif; /* Google Fonts'dan eklenen font */
+  font-size: 30px; /* Yazı boyutu */
+  color: #ffffff; /* Yazı rengi */
+  font-weight: 700; /* Daha kalın bir yazı */
+}
+
+/* Hover efekti */
+.logo-link:hover .logo-image {
+  transform: rotate(10deg) scale(1.1); /* Hover durumunda logo biraz döner ve büyür */
+}
+
+
+  
+.container {
+  height: 100vh; /* Tüm ekran yüksekliği */
+ 
+  padding: 10px 10px; /* Üstten daha az boşluk vererek daha yukarı taşıyoruz */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* İçeriği üstte hizalar */
+  align-items: center;
+  position: relative;
+  z-index: 2; /* İçeriğin partiküllerin üzerinde kalmasını sağlamak için */
+}
+
+  
+  .container:nth-child(odd) {
+  }
+  
+  h1 {
+    font-size: 3em;
+    margin-bottom: 0.5em;
+  }
+  
+  p {
+    font-size: 1.5em;
+    margin-bottom: 1em;
+  }
+  
+  .dream-input-section {
+    display: flex; /* Yan yana hizalama */
+    align-items: flex-start; /* Üst hizalamayı eşleştir */
+    gap: 20px; /* Aralarındaki boşluk */
+  
+    margin-left: 160px; /* Soldan boşluk */
+}
+#dreamText {
+    width: 800px; /* Metin alanının genişliği artırıldı */
+    height: 200px; /* Yükseklik artırıldı */
+    font-size: 24px; /* Yazı boyutu */
+    padding: 15px; /* İçerik kenar boşluğu */
+    border: 2px solid #cccccc00; /* Kenar rengi */
+    border-radius: 10px; /* Yuvarlak köşeler */
+    resize: none; /* Kullanıcının boyutlandırmasını engelle */
+    box-shadow: 0 2px 4px rgba(109, 65, 0, 0.1); /* Hafif gölge */
+    transition: box-shadow 0.3s ease, border-color 0.3s ease; /* Yumuşak geçişler */
+    background-color: #af43054b; /* Arka plan rengi */
+    color: #ffcd60; /* Metin rengini beyaz yaptık */
+}
+
+#dreamText:focus {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Odaklanıldığında gölge */
+    outline: none; /* Varsayılan kenarlığı kaldır */
+    background-color: #ffffff4f; /* Arka plan rengini odaklanıldığında yarı saydam yapar */
+    color: #ffffff; /* Odaklanıldığında da metin rengini beyaz tut */
+}
+
+
+/* Voice Button Styling */
+.voice-button {
+    display: flex; /* İçeriği ortalamak için flex */
+    align-items: center; 
+    justify-content: center; 
+    background-color: #4caf4f00; /* Şeffaf arka plan */
+    border: 2px solid #ccc; /* Kenarlık ekledik */
+    border-radius: 50%; /* Düğmeyi daire yapmak için */
+    cursor: pointer; /* İmleç tipi */
+    transition: transform 0.3s ease, background-color 0.3s ease; /* Yumuşak geçişler */
+    width: 80px; /* Düğmenin genişliği */
+    height: 80px; /* Düğmenin yüksekliği */
+}
+
+/* Hover Effect */
+.voice-button:hover {
+    transform: scale(1.1); /* Hover durumunda büyütme efekti */
+}
+
+/* Microphone Icon Styling */
+.voice-button img {
+    height: 60%; /* İkonun yüksekliğini düğme yüksekliğinin %60'ı yap */
+    width: 60%; /* İkonun genişliğini de buna uygun yap */
+}
+
+  .particles {
+    position: fixed; /* Changed to fixed */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1; /* Ensure particles are below content */
+  }
+  
+  .particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0;
+    box-shadow: 0 0 5px 1px white;
+    animation: float 10s infinite;
+  }
+  
+  @keyframes float {
+    0% {
+      transform: translateY(0) translateX(0);
+      opacity: 0.7;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-100vh) translateX(calc(-50vw + 100%));
+      opacity: 0;
+    }
+  }
+  
+  /* Small stars background */
+  .star-background {
+    position: fixed; /* Changed to fixed */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    z-index: 0; /* Ensure star background is below everything */
+  }
+  
+  .star {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    background: white;
+    opacity: 0.8;
+  }
+  
+  /* Additional section styling */
+  .features {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .feature-item {
+    max-width: 300px;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 20px;
+  }
+  
+  .logos img {
+    max-width: 100px;
+    margin: 20px;
+  }
+  
+  .slider {
+    width: 80%;
+    max-width: 800px;
+    overflow: hidden;
+    position: relative;
+    margin: 20px auto;
+  }
+  
+  .slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .slide {
+    min-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .slider img {
+    width: 100%;
+    border-radius: 10px;
+  }
+  
+  .slider-buttons {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+  }
+  
+  .slider-button {
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+  }
+
+
+.button-container {
+    display: flex; /* Butonları yan yana dizmek için flex kullanımı */
+    justify-content: center; /* Butonları ortalamak için */
+    gap: 20px; /* Butonlar arasındaki boşluk */
+    margin-top: 20px; /* Üstten boşluk */
+}
+
+.w-button {
+    color: #ffffff; /* Yazı rengi */
+    line-height: inherit;
+    cursor: pointer;
+    border: 1px solid white; /* Varsayılan olarak şeffaf çerçeve */
+    border-radius: 20px; /* Hafif yuvarlak köşeler */
+    padding: 15px 35px; /* Butonun iç boşluklarını artırarak büyütme */
+    text-decoration: none;
+    display: inline-block; /* Yan yana dizilmek için inline-block */
+    font-size: 16px; /* Yazı boyutu artırıldı */
+    transition: all 0.3s ease; /* Geçiş animasyonu */
+    margin: 0; /* Butonların çevresinde ekstra boşluk olmasın */
+}
+
+/* Hover durumunda değişiklikler */
+.w-button:hover {
+    background-color: #d0d5ff9d; /* Gece mavisi arka plan */
+    color: #fff9a9; /* Yazı rengini koru */
+    border: 1px solid white; /* Varsayılan olarak şeffaf çerçeve */
+}
+
+
+
+/* blog eklemeleri*/
+
+
+.section-heading {
+  margin-bottom: 16px;
+  margin-top: 0
+}
+
+.section-heading.centered {
+  color: #c6c6c6;
+  font-size: 20px;
+  font-weight: 450;
+  letter-spacing: 5px;
+  text-align: center
+}
+
+.section-subheading.center {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 300;
+  letter-spacing: 3px;
+  line-height: 35px;
+  text-align: center
+}
+
+.section-subheading.center.off-white {
+  background-color: rgba(0, 0, 0, .281);
+  border-radius: 6px;
+  color: #fffdfd94;
+  line-height: 30px
+}
+
+.section {
+  background-color: #1b0569;
+  margin-top: 0;
+  padding: 10px 10px 0px;
+  position: relative;
+  text-align: center;
+  width: auto
+}
+
+
+
+.section-title-group {
+  margin-bottom: 10px;
+  padding-bottom: 0;
+  padding-top: 50px
+}
+
+
+
+
+.w-container {
+  display: flex; /* Flex düzeni kullanarak yan yana hizalama */
+    flex-wrap: wrap; /* Blogların satırdan taşması durumunda alt satıra geçmesini sağlar */
+    gap: 10px; /* Bloglar arasındaki boşluk */
+    justify-content: center; /* Blogları yatayda ortalar */
+}
+
+.w-container:after,
+.w-container:before {
+  content: " ";
+  display: table;
+  grid-area: 1/1/2/2
+}
+
+.w-container:after {
+  clear: both
+}
+
+.w-col {
+  background-color: #0000;
+  flex: 1 1 calc(33.33% - 20px); /* Her blog kolonunun genişliği */
+    box-sizing: border-box;
+    min-width: 450px; /* Daha küçük ekranlar için minimum genişlik */
+  justify-content: center;
+  min-height: 1px;
+  padding-left: 10px;
+  padding-right: 10px;
+  position: relative;
+  width: 100%
+  
+}
+
+
+.w-container:after,
+.w-container:before {
+  content: " ";
+  display: table;
+  grid-area: 1/1/2/2
+}
+
+.w-container:after {
+  clear: both
+}
+
+
+.w-nav {
+  align-items: right;
+  display: flex;
+  justify-content: space-between;
+  z-index: 1000
+}
+
+.w-nav:after,
+.w-nav:before {
+  content: " ";
+  display: table;
+  grid-area: 1/1/2/2
+}
+
+.w-nav:after {
+  clear: both
+}
+
+.w-nav-brand {
+  color: #ffffff;
+  float: left
+}
+
+.w-nav-brand,
+.w-nav-link {
+  position: relative;
+  text-decoration: none
+}
+
+.w-nav-link {
+  color: #ffffff !important;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  text-align: left;
+  vertical-align: top
+}
+
+.w-nav-link.w--current {
+  color: #afacac !important;
+  font-size: 20px
+}
+
+.w-nav-menu {
+  float: right;
+  position: relative
+}
+
+.w-nav[data-collapse=all] .w-nav-menu {
+  display: none
+}
+
+.w-tabs {
+  position: relative
+}
+
+.w-tabs:after,
+.w-tabs:before {
+  content: " ";
+  display: table;
+  grid-area: 1/1/2/2
+}
+
+.w-tabs:after {
+  clear: both
+}
+
+.w-tab-link,
+.w-tab-menu {
+  position: relative
+}
+
+.w-tab-link {
+  background-color: #ddd;
+  color: #222;
+  cursor: pointer;
+  display: inline-block;
+  padding: 9px 30px;
+  text-align: left;
+  text-decoration: none;
+  vertical-align: top
+}
+
+.w-tab-link.w--current {
+  background-color: #c8c8c8
+}
+
+.w-tab-link:focus {
+  outline: 0
+}
+
+.w-tab-content {
+  display: block;
+  overflow: hidden;
+  position: relative
+}
+
+.w-tab-pane {
+  display: none;
+  position: relative
+}
+
+.w--tab-active {
+  display: block
+}
+.get-movies-button.button.random {
+  margin-left: 10px;
+}
+
+
+.white-box {
+  border-radius: 5px;
+  box-sizing: border-box;
+  height: 455px;
+  margin-top: 20px;
+  -o-object-fit: fill;
+  object-fit: fill;
+  padding: 15px;
+  perspective: 1000px;
+  position: relative;
+  text-align: center;
+  transform-origin: center;
+  transition: transform .5s ease, ease
+}
+
+.white-box .back,
+.white-box .front {
+  backface-visibility: hidden;
+  border-radius: 10px;
+  height: 100%;
+  position: absolute;
+  transition: transform .6s;
+  width: 100%
+}
+
+.white-box .front {
+ 
+  color: #000;
+  z-index: 2
+}
+
+.white-box .back,
+.white-box:hover .front {
+  transform: rotateY(180deg)
+}
+
+.white-box:hover .back {
+  transform: rotateY(0deg)
+}
+
+.white-box.transparent {
+  background-color: #0000;
+  border-style: none
+}
+.grid-image {
+  background-color: #230000;
+  border: 2px solid #450000;
+  border-radius: 10%;
+  box-shadow: none;
+  display: block;
+  margin: 20px auto;
+  padding: 0px;
+  width: 35%
+}
+.white-box .front {
+  background-color:  #ce8704;
+  color: #ffffff
+}
+
+.white-box .back,
+.white-box .front {
+    backface-visibility: hidden;
+    border-radius: 10px;
+    height: 100%;
+    position: absolute;
+    transition: transform .2s;
+    width: 100%
+}
+
+.white-box .front {
+    background:  #f5e0b8;
+    color: #000;
+    z-index: 2
+    
+}
+
+
+
+.blog-header h1 {
+  font-size: 42px;
+  margin-bottom: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+.blog-header p {
+  font-size: 18px;
+  font-weight: 300;
+  color: hwb(51 49% 3%);
+  letter-spacing: 1px;
+}
+/* blogs1 için*/
+
+.related-articles {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  text-align: center;
+  background: #fff;
+  /* White background to contrast against body */
+  border-radius: 15px;
+  /* Rounded corners for a card-like look */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  /* Shadow for depth */
+}
+
+.related-articles h3 {
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+  color: #222;
+  /* Darker color for headings */
+  font-family: 'Merriweather', serif;
+  display: inline-block;
+  padding-bottom: 10px;
+}
+
+.related-article {
+  background-color: #f9f9f9;
+  /* Light gray background for article cards */
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  /* Rounded corners */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  /* Smooth hover effect */
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.related-article:hover {
+  transform: scale(1.05);
+  /* Scales the element up to 105% of its original size */
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  /* Increase shadow on hover for depth */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  /* Smooth transition for the scaling and shadow */
+}
+
+
+.related-article a {
+  text-decoration: none;
+  color: #333;
+  /* Dark color for text */
+}
+
+.related-article h4 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  font-family: 'Poppins', sans-serif;
+  /* Use a distinct font for article titles */
+}
+
+.related-article p {
+  font-size: 1rem;
+  color: #666;
+  /* Slightly lighter color for article descriptions */
+}
+
+.film-box {
+  position: relative;
+  /* To position elements inside relative to this container */
+  background-color: #000000;
+  /* Background color for contrast */
+  border-radius: 15px;
+  /* Rounded corners for the box */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  /* Soft shadow for box */
+  padding: 20px;
+  /* Padding inside the box */
+  max-width: 450px;
+  /* Limit the width of each box */
+  width: 100%;
+  /* Ensure it takes full width available */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  /* Smooth hover effect */
+  color: #ffffff;
+  /* White text for contrast */
+}
+
+.film-box:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  /* Increase shadow on hover */
+  backdrop-filter: blur(10px);
+  /* Add blur effect smoothly on hover */
+
+}
+
+.film-box img {
+  width: 100%;
+  /* Responsive width */
+  max-width: 400px;
+  /* Limit the maximum width of the images */
+  border-radius: 10px;
+  /* Add rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Add subtle shadow to the image */
+  transition: transform 0.3s ease;
+  /* Smooth hover effect for images */
+  cursor: pointer;
+}
+
+.film-box img:hover {
+  transform: scale(1.01);
+  /* Slight zoom effect on hover */
+
+}
+
+/* Title and Description Styles */
+.film-box strong {
+  font-size: 1.2rem;
+  color: #333;
+  /* Dark text color */
+  margin-top: 10px;
+  /* Add space above the title */
+  display: block;
+  /* Make the title take up a full line */
+}
+
+.film-box p {
+  font-size: 1rem;
+  color: #666;
+  /* Lighter text color for descriptions */
+  margin-top: 5px;
+  /* Add space above the description */
+}
+
+.blog-header {
+  text-align: center;
+  padding: 60px 20px;
+  /* Add more padding for a spacious look */
+  background: linear-gradient(0deg, #94000000, #01052c4d);
+  /* Gradient background for a modern look */
+  color: #ffffff;
+  /* White text color for contrast */
+  /* Add shadow to give depth */
+  margin-top: 85px;}
+
+  /* Blog Content Styles */
+.blog-content {
+  padding: 50px 30px;
+  /* Increase padding for a comfortable reading experience */
+  max-width: 800px;
+  margin: 40px auto;
+  /* Add margin to separate the content */
+  background-color: #00000000;
+  /* White background to make it easy to read */
+  border-radius: 15px;
+  /* Rounded corners to soften the edges */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  /* Soft shadow to lift the content off the background */
+  font-family: 'Open Sans', sans-serif;
+  /* Readable, clean font for content */
+  font-size: 18px;
+}
+
+.blog-content h2 {
+  font-size: 2rem;
+  /* Increase font size for subheadings */
+  margin-top: 30px;
+  margin-bottom: 15px;
+  /* Separate from content below */
+  color: #ffffff;
+  /* Dark color for good contrast */
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  /* Give subheadings a classic, elegant feel */
+  text-transform: capitalize;
+  /* Capitalize each word for better readability */
+  border-bottom: 2px solid #e0e0e0;
+  /* Light underline to separate the heading */
+  padding-bottom: 10px;
+  /* Padding below to give a balanced space */
+}
+
+.blog-content p {
+  font-size: 1.3rem;
+  /* Increase readability of paragraphs */
+  line-height: 1.6;
+  /* Space out the lines for easy reading */
+  color: #ffffff;
+  /* Dark gray for a softer look compared to black */
+  margin-bottom: 60px;
+  /* Add spacing between paragraphs */
+  text-align: center;
+}
+
+.blog-content ol {}
+
+.blog-content ol li {
+  background: #ed020256;
+  /* Light background for each item */
+  padding: 20px;
+  margin-bottom: 20px;
+  /* Space between items */
+  border-radius: 10px;
+  /* Soft rounded edges */
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  /* Light shadow to add depth */
+}
+
+.blog-content ol li:hover {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  /* Increase shadow on hover */
+}
+
+.blog-content ol li strong {
+  font-size: 1.4rem;
+  /* Increase the size of the movie title for emphasis */
+  color: #d1cbcb;
+  /* Darker color to make it stand out */
+  margin-bottom: 5px;
+  /* Add space below the title */
+  display: block;
+}
+
+.blog-content ol li p {
+  font-size: 1rem;
+  color: #666;
+  /* Lighter color for the descriptions */
+  margin-top: 10px;
+}
